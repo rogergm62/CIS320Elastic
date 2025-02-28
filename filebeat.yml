@@ -18,7 +18,14 @@ setup.ilm.overwrite: true
 
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
-  index: "filebeat-logs-%{+yyyy.MM.dd}"
+  indices:
+    - index: "filebeat-logs-%{+yyyy.MM.dd}"
+      when.not.contains:
+        event.module: "suricata"
+    - index: "suricata-logs-%{+yyyy.MM.dd}"
+      when.contains:
+        event.module: "suricata"
+  #index: "filebeat-logs-%{+yyyy.MM.dd}"
 
 setup.kibana:
   host: "kibana:5601"
