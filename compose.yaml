@@ -44,4 +44,4 @@ services:
     volumes:
       - ./suricata-config:/etc/suricata/  # Volume for config
       - suricata_logs:/var/log/suricata  # Volume for logs
-    command: ["-i", "eth0"]  # Change eth0 to match your network interface
+    command: ["-i", "ens32"]  # Change eth0 to match your network interface
